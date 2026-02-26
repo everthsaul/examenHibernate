@@ -1,0 +1,30 @@
+@Entity
+@Table(name = "operador")
+public class Operador {
+    @Id
+    private int id;
+    private String nombre;
+    private String apellido;
+    private char categoriaLicencia;
+    private LocalDate fechaVencimiento;
+
+    @OneToOne(mappedBy = "operador", cascade = CascadeType.ALL)
+    @PrimaryKeyJoinColumn
+    private OperadorDetalle detalle;
+}
+
+@Entity
+@Table(name = "operador_detalle")
+public class OperadorDetalle {
+    @Id
+    private int id; // Este ID será el mismo que el de Operador
+    
+    private int telefono;
+    private String direccion;
+    private String email;
+
+    @OneToOne
+    @MapsId
+    @JoinColumn(name = "id")
+    private Operador operador;
+}
