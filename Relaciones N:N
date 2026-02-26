@@ -1,0 +1,22 @@
+@Entity
+@Table(name = "revision")
+public class Revision {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
+
+    @ManyToOne
+    @JoinColumn(name = "encargado", nullable = false)
+    private Tecnico tecnico;
+
+    @ManyToOne
+    @JoinColumn(name = "vehiculo", nullable = false)
+    private Vehiculo vehiculo;
+
+    @ManyToOne
+    @JoinColumn(name = "chofer", nullable = false)
+    private Operador operador;
+
+    @Column(name = "fecha_revision")
+    private LocalDate fechaRevision;
+}
